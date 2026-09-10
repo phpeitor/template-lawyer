@@ -11,7 +11,7 @@
 
 Landing institucional estática para Estudio Wiesse & Abogados. El proyecto conserva la estructura exportada de WordPress/Elementor y puede ejecutarse en cualquier entorno que sirva archivos estáticos, con navegación por secciones, hero con video, información institucional, servicios, portafolio, publicaciones y contacto.
 
-Actualmente no es una aplicación dinámica: no incluye backend propio, base de datos, autenticación, API ni sistema de reservas.
+Actualmente no incluye backend propio, base de datos, autenticación, API ni sistema de reservas.
 
 ## Requisitos
 
