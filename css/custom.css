@@ -1,0 +1,23 @@
+/* Project-owned overrides for the exported Watson landing page. */
+
+.wp-hidden-svg {
+   visibility: hidden;
+   position: absolute;
+   left: -9999px;
+   overflow: hidden;
+}
+
+.signature-image {
+   width: 50%;
+}
+
+.progress-91 { width: 91%; }
+.progress-82 { width: 82%; }
+.progress-94 { width: 94%; }
+.progress-83 { width: 83%; }
+.progress-75 { width: 75%; }
+.progress-92 { width: 92%; }
+
+.cf7-hidden {
+   display: none;
+}

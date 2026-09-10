@@ -11,6 +11,8 @@
 ## Estructura real
 
 - `index.html`: markup, contenido, navegación y referencias a todos los recursos.
+- `css/custom.css`: estilos propios del proyecto y overrides mantenibles.
+- `js/custom.js`: configuración y comportamiento propio de la landing.
 - `wp-content/cache/autoptimize/css/`: CSS exportado y minificado del tema/Elementor.
 - `wp-content/cache/autoptimize/js/`: JavaScript exportado/minificado de la plantilla.
 - `wp-content/uploads/`: video, perfil, firma, logos, portafolio, autores y publicaciones.
@@ -18,10 +20,14 @@
 - `wp-includes/js/`: dependencias de WordPress exportadas.
 - `.ia-context/`: convenciones para agentes; no forma parte del runtime de la página.
 
-No documentar ni crear `css/`, `js/`, `php/`, `images/`, `fonts/`, `.env`, `programacion.json` o `citas.json` como si fueran parte del proyecto actual.
+No crear `php/`, `images/`, `fonts/`, `.env`, `programacion.json` o `citas.json` como si fueran parte del proyecto actual. Las carpetas `css/` y `js/` sí contienen ahora código propio y deben conservarse separadas del HTML.
 
 ## HTML y contenido
 
+- `index.html` debe contener markup, contenido y referencias a recursos; no debe contener bloques `<style>`, JavaScript inline ni atributos `style` para comportamiento o estilos propios.
+- Todo CSS nuevo debe vivir en `css/custom.css` y todo JavaScript nuevo debe vivir en `js/custom.js`. No mezclar responsabilidades en `index.html`.
+- Los estilos inline heredados del exportador deben migrarse a clases en `css/custom.css` cuando se modifique esa zona; no añadir nuevos estilos inline.
+- La configuración global requerida por dependencias exportadas debe definirse en `js/custom.js`, antes de cargar el bundle que la consume.
 - Mantener `lang="es"`, `meta charset`, viewport y un único `h1` principal.
 - Conservar las anclas existentes: `#home`, `#about`, `#resume`, `#portfolio`, `#blog` y `#contact`.
 - Usar secciones y headings en una jerarquía comprensible; evitar texto de plantilla como “Ipsum”, “My Resume” o etiquetas en inglés si el contenido se está corrigiendo.
@@ -40,7 +46,7 @@ No documentar ni crear `css/`, `js/`, `php/`, `images/`, `fonts/`, `.env`, `prog
 
 ## CSS
 
-- Mantener estilos separados del contenido siempre que sea posible.
+- Mantener todos los estilos editables en `css/custom.css`; `index.html` solo debe enlazar hojas de estilo.
 - Antes de editar un CSS minificado, comprobar que no exista una fuente editable en el tema hijo; si no existe, hacer el cambio mínimo y dejar constancia en el diff.
 - Evitar `!important`, selectores globales frágiles y cambios que alteren accidentalmente el layout exportado de Elementor.
 - Definir dimensiones estables para imágenes, video y controles para evitar saltos de layout.
@@ -48,6 +54,7 @@ No documentar ni crear `css/`, `js/`, `php/`, `images/`, `fonts/`, `.env`, `prog
 
 ## JavaScript y recursos
 
+- Mantener toda la lógica y configuración propia en `js/custom.js`; `index.html` solo debe cargar scripts mediante `src`.
 - No añadir lógica de negocio de citas ni endpoints inexistentes.
 - Si se modifica el bundle cacheado, comprobar primero qué comportamiento controla y evitar reescribirlo sin fuente legible.
 - Mantener el hero de video silencioso, en bucle y compatible con `playsinline`; respetar `prefers-reduced-motion` cuando se agreguen animaciones nuevas.
