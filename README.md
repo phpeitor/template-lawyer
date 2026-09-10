@@ -9,33 +9,32 @@
 
 ## Descripción
 
-Landing institucional estática para Estudio Wiesse & Abogados. El proyecto es una exportación de WordPress/Elementor adaptada para ejecutarse desde Apache, con navegación por secciones, hero con video, información institucional, servicios, portafolio, publicaciones y contacto.
+Landing institucional estática para Estudio Wiesse & Abogados. El proyecto conserva la estructura exportada de WordPress/Elementor y puede ejecutarse en cualquier entorno que sirva archivos estáticos, con navegación por secciones, hero con video, información institucional, servicios, portafolio, publicaciones y contacto.
 
 Actualmente no es una aplicación dinámica: no incluye backend propio, base de datos, autenticación, API ni sistema de reservas.
 
 ## Requisitos
 
-- Apache 2.4 o un servidor HTTP compatible con rutas relativas.
+- Un servidor HTTP local o una plataforma de hosting que respete las rutas relativas.
 - Navegador moderno con soporte para HTML5, video y JavaScript ES6.
-- PHP no es necesario para la landing actual.
 
-## Puesta En Marcha
+## Puesta en Marcha
 
-1. Clonar el repositorio dentro del document root de Apache:
+1. Clonar el repositorio:
 
 ```bash
 git clone https://github.com/phpeitor/template-lawyer.git
 ```
 
-2. Iniciar Apache.
+2. Servir la carpeta del proyecto con el servidor HTTP de tu entorno.
 
 3. Abrir la ruta del proyecto, por ejemplo:
 
 ```text
-http://127.0.0.1/template-lawyer/
+http://localhost/template-lawyer/
 ```
 
-No se debe abrir `index.html` directamente con `file://`, porque las rutas relativas, el video y algunos recursos del exportador pueden comportarse de forma distinta fuera de un servidor HTTP.
+Se recomienda servir el proyecto mediante HTTP en lugar de abrir `index.html` directamente con `file://`, porque las rutas relativas, el video y algunos recursos exportados pueden comportarse de forma distinta fuera de un servidor.
 
 ## Estructura
 
@@ -68,11 +67,11 @@ La navegación principal utiliza estas anclas:
 
 `#home`, `#about`, `#resume`, `#portfolio`, `#blog` y `#contact`.
 
-## Convenciones De Desarrollo
+## Convenciones de Desarrollo
 
 - No mezclar CSS ni JavaScript propio dentro de `index.html`.
 - No crear carpetas paralelas `css/` o `js/` en la raíz; los archivos propios pertenecen a `wp-includes/css/` y `wp-includes/js/`.
-- Mantener rutas relativas para conservar compatibilidad con Apache y subdirectorios.
+- Mantener rutas relativas para conservar compatibilidad con distintos servidores y subdirectorios.
 - No introducir frameworks, bundlers o backend para cambios que solo afectan a la landing estática.
 - No publicar credenciales, tokens, datos de clientes ni información legal confidencial.
 - No inventar casos, clientes, testimonios, credenciales profesionales o resultados jurídicos.
@@ -84,7 +83,7 @@ Las reglas completas de trabajo están en [`.ia-context/AGENTS_ROLES.md`](.ia-co
 
 Antes de entregar cambios, comprobar:
 
-- La página carga desde Apache sin errores JavaScript.
+- La página carga desde el servidor elegido sin errores JavaScript.
 - Las hojas de estilo y scripts propios responden desde `wp-includes/`.
 - El menú y todas las anclas navegan correctamente.
 - El hero, imágenes, portafolio, publicaciones, formulario y mapa mantienen su funcionamiento esperado.
@@ -98,6 +97,6 @@ git diff --check
 git status --short
 ```
 
-## Estado Del Formulario
+## Estado del Formulario
 
-El formulario conserva el markup exportado de Contact Form 7, pero esta copia estática no incluye un endpoint backend para procesar envíos. Antes de presentarlo como funcional debe conectarse a un servicio autorizado y documentarse el tratamiento de datos personales.
+El formulario conserva el markup exportado de Contact Form 7, pero esta copia estática no incluye un servicio de procesamiento para envíos. Antes de presentarlo como funcional debe conectarse a un servicio autorizado y documentarse el tratamiento de datos personales.
